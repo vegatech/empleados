@@ -1,51 +1,62 @@
 <form [formGroup]="this.empleadosService.form" (ngSubmit)="onSubmit()">
+    <div class="col align-self-center">
+    <div class="col-5">
     <label for="exampleFormControlInput1" class="form-label">Nombre Empleado</label>
     <input placeholder="Nombre Empleado" 
            formControlName="nombre" 
            type="text" 
            class="form-control">
-       
+
+    <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>   
     <input placeholder="Fecha de Nacimiento" 
            formControlName="fechanacimiento" 
            type="text" 
            class="form-control">
 
+    <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
     <input placeholder="Nombre de usuario" 
            formControlName="nombreusuario" 
            type="text" 
            class="form-control">
+    <label for="exampleFormControlInput1" class="form-label">Fecha Contratacion</label>
     <input placeholder="" 
            formControlName="fechacontratacion" 
            type="text" 
            class="form-control">
+    <label for="exampleFormControlInput1" class="form-label">Pais</label>       
     <input placeholder="Pais" 
            formControlName="pais" 
            type="text" 
            class="form-control">
+    <label for="exampleFormControlInput1" class="form-label">Estado</label>
     <input placeholder="Estado" 
            formControlName="estado" 
            type="text" 
-           class="form-control">        
+           class="form-control">
+    <label for="exampleFormControlInput1" class="form-label">Area</label>        
     <input placeholder="Area" 
            formControlName="area" 
            type="text" 
            class="form-control">
-<input placeholder="Cargo" 
+    <label for="exampleFormControlInput1" class="form-label">Cargo</label>      
+    <input placeholder="Cargo" 
            formControlName="cargo" 
            type="text" 
            class="form-control">  
-<input placeholder="Comision" 
+    <label for="exampleFormControlInput1" class="form-label">% Comision</label>
+    <input placeholder="Comision" 
            formControlName="comision" 
            type="text" 
            class="form-control">
+           
            <button class="waves-effect waves-light btn col s4" 
-        *ngFor="let coffee of coffees" 
-        (click)="addCoffee(coffee)">
-{{coffee}}
+        *ngFor="let cargo of cargos" 
+        (click)="addCargo(cargo)">
+{{cargo}}
 </button><ul class="collection">
-    <li *ngFor="let coffee of coffeeOrder">
-        <span class="col s11"> {{ coffee }} </span>
-        <a class="col s1" (click)="removeCoffee(coffee)">x</a>
+    <li *ngFor="let empleado of employee">
+        <span class="col s11"> {{ employee }} </span>
+        <a class="col s1" (click)="removeEmployee(empleado)">x</a>
     </li></ul>    
     
     <button 
@@ -53,4 +64,5 @@
        (click)="onSubmit()">
         Enviar
     </button>
+</div></div>
         </form>
