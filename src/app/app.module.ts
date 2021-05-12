@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { EmpleadosComponent } from './empleados/empleados.component';
 import { EmpleadoListComponent } from './empleado-list/empleado-list.component';
 import { EmpleadosService } from './shared/empleados.service'
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { EmpleadosService } from './shared/empleados.service'
     EmpleadoListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule 
   ],
   providers: [EmpleadosService ],
   bootstrap: [AppComponent]
