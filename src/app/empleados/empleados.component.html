@@ -1,1 +1,56 @@
-<p>empleados works!</p>
+<form [formGroup]="this.empleadosService.form" (ngSubmit)="onSubmit()">
+    <label for="exampleFormControlInput1" class="form-label">Nombre Empleado</label>
+    <input placeholder="Nombre Empleado" 
+           formControlName="nombre" 
+           type="text" 
+           class="form-control">
+       
+    <input placeholder="Fecha de Nacimiento" 
+           formControlName="fechanacimiento" 
+           type="text" 
+           class="form-control">
+
+    <input placeholder="Nombre de usuario" 
+           formControlName="nombreusuario" 
+           type="text" 
+           class="form-control">
+    <input placeholder="" 
+           formControlName="fechacontratacion" 
+           type="text" 
+           class="form-control">
+    <input placeholder="Pais" 
+           formControlName="pais" 
+           type="text" 
+           class="form-control">
+    <input placeholder="Estado" 
+           formControlName="estado" 
+           type="text" 
+           class="form-control">        
+    <input placeholder="Area" 
+           formControlName="area" 
+           type="text" 
+           class="form-control">
+<input placeholder="Cargo" 
+           formControlName="cargo" 
+           type="text" 
+           class="form-control">  
+<input placeholder="Comision" 
+           formControlName="comision" 
+           type="text" 
+           class="form-control">
+           <button class="waves-effect waves-light btn col s4" 
+        *ngFor="let coffee of coffees" 
+        (click)="addCoffee(coffee)">
+{{coffee}}
+</button><ul class="collection">
+    <li *ngFor="let coffee of coffeeOrder">
+        <span class="col s11"> {{ coffee }} </span>
+        <a class="col s1" (click)="removeCoffee(coffee)">x</a>
+    </li></ul>    
+    
+    <button 
+       class="waves-effect waves-light btn col s12" 
+       (click)="onSubmit()">
+        Enviar
+    </button>
+        </form>
