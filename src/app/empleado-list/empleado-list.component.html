@@ -1,2 +1,22 @@
+<table>
+   <thead>
+     <tr>
+       <th>Order No.</th>
+       <th>Nombre</th>
+       <th>Nombre Usuario</th>
+     </tr>
+   </thead>
+ 
+   <tbody>
 
-
+<tbody>
+    <tr *ngFor="let empleado of Empleados">
+       <td>{{ empleado.payload.doc.data().nombre }}</td>
+       <td>{{ empleado.payload.doc.data().nombreusuario }}</td>
+       <td><span>{{ empleado.payload.doc.data().fnacimiento }} </span></td>
+            
+          
+          
+      
+    </tr>
+    </tbody>

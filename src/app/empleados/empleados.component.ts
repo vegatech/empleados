@@ -12,7 +12,8 @@ export class EmpleadosComponent implements OnInit {
   cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
   ngOnInit(): void {
   }
-  employee = [];addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
+  employee = [];
+  addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
     let index = this.employee.indexOf(employee);
     if (index > -1) this.employee.splice(index, 1);};
 

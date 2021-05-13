@@ -23,11 +23,18 @@ export class EmpleadosService {
     createEmployeesSave(data) {
       return new Promise<any>((resolve, reject) =>{
           this.firestore
-              .collection("Employee")
+              .collection("Empleados")
               .add(data)
               .then(res => {}, err => reject(err));
       });
     }
+
+
+    getEmployees() { 
+      return  this.firestore.collection("Empleados").snapshotChanges();
+    }
+
+
 
 }
 
