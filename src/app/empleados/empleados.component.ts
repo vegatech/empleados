@@ -10,6 +10,7 @@ export class EmpleadosComponent implements OnInit {
 
   constructor(public empleadosService: EmpleadosService) { }
   cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
+  areas: any = ['Administrativa', 'Tecnologia'];
   ngOnInit(): void {
   }
   employee = [];
@@ -38,5 +39,11 @@ export class EmpleadosComponent implements OnInit {
             }
          });
 
+    }
+
+    changeCargo(e) {
+      /*this.cargo.setValue(e.target.value, {
+        onlySelf: true
+      })*/
     }
 }

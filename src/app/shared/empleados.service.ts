@@ -21,6 +21,8 @@ export class EmpleadosService {
     comision: new FormControl('')
 })
     createEmployeesSave(data) {
+      console.log("Guarda Registro");
+      console.log(JSON.stringify(data));
       return new Promise<any>((resolve, reject) =>{
           this.firestore
               .collection("Empleados")
@@ -29,12 +31,21 @@ export class EmpleadosService {
       });
     }
 
-
+    updateEmployee(data) {
+      return this.firestore
+        .collection("Empleados")
+        .doc(data.payload.doc.id)
+        .set({ completed: true }, { merge: true });
+    }
     getEmployees() { 
       return  this.firestore.collection("Empleados").snapshotChanges();
     }
 
-
-
+    deleteEmployee(data) {
+      return this.firestore
+        .collection("Empleados")
+        .doc(data.payload.doc.id)
+        .delete();
+    }
 }
 
