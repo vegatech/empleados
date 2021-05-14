@@ -15,6 +15,8 @@ import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule 
+    AngularFirestoreModule,
+    HttpClientModule  
   ],
   providers: [EmpleadosService ],
   bootstrap: [AppComponent]

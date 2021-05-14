@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
+import { PaisesService } from  "../shared/paises.service";
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-empleados',
@@ -8,12 +9,19 @@ import Swal from 'sweetalert2';
 })
 export class EmpleadosComponent implements OnInit {
 
-  constructor(public empleadosService: EmpleadosService) { }
+  constructor(public empleadosService: EmpleadosService,public paisesSerice: PaisesService) { }
   cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
   areas: any = ['Administrativa', 'Tecnologia'];
+  paises= [];
   ngOnInit(): void {
+    this.paisesSerice.getAllCountries().subscribe(data =>{
+      //console.log(data)
+      this.paises = data;
+      console.log(this.paises)
+    })
   }
   employee = [];
+
   addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
     let index = this.employee.indexOf(employee);
     if (index > -1) this.employee.splice(index, 1);};
@@ -40,7 +48,12 @@ export class EmpleadosComponent implements OnInit {
          });
 
     }
-
+    /*get_paises(){
+      this.paisesSerice.getPaises().subscribe(res =>{
+        console.log(JSON.stringify(res));
+      })
+    }*/
+   
     changeCargo(e) {
       /*this.cargo.setValue(e.target.value, {
         onlySelf: true

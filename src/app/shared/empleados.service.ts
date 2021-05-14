@@ -7,7 +7,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class EmpleadosService {
 
-  constructor(private firestore: AngularFirestore ) { }
+  constructor(private firestore: AngularFirestore
+  
+    ) { }
 
   form = new FormGroup({        
     nombre: new FormControl(''),   
@@ -46,6 +48,19 @@ export class EmpleadosService {
         .collection("Empleados")
         .doc(data.payload.doc.id)
         .delete();
+    }
+    searchByName(data){
+      return this.firestore
+      .collection("Empleados")
+      .doc(data.payload.doc.id)
+      .get();
+      
+
+    }
+    searcEmployees(searchValue){
+      return this.firestore.collection('Empleados',ref => ref.where('nombre', '>=', searchValue)
+        .where('nombre', '<=', searchValue + '\uf8ff'))
+        .snapshotChanges()
     }
 }
 
