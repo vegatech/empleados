@@ -35,4 +35,7 @@ export class EmpleadoListComponent implements OnInit {
     console.log("ingresa boton nuevo empleado");
     this.router.navigate(['/new-employee']);
   }
+  SearchByEmployeeName(){
+    
+  }
 }

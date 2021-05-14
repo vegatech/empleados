@@ -43,6 +43,10 @@
        <option value="" disabled>Selecciona el cargo</option>
        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{cargo}}</option>
     </select>     
+    <select class="custom-select" (change)="changeCargo($event)" formControlName="pais">
+       <option value="" disabled>Selecciona un Pais</option>
+       <option *ngFor="let paises of paises" [ngValue]="paises">{{paises}}</option>
+    </select> 
     <label for="exampleFormControlInput1" class="form-label">% Comision</label>
     <input placeholder="Comision" 
            formControlName="comision" 
