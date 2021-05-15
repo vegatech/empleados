@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaisesService } from  "../shared/paises.service";
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,20 +10,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./empleado-list.component.css']
 })
 export class EmpleadoListComponent implements OnInit {
+  searchValue:string="";
+  name_filtered_items: Array<any>;
+  Empleados;
+
 
   constructor(private empleadosService:EmpleadosService,
+
     private router: Router,
     private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit() {
     this.getEmployees();
+
   }
 
 
-  searchValue:string="";
-  name_filtered_items: Array<any>;
-  Empleados;
 
   getEmployees = () =>
     this.empleadosService
@@ -61,6 +65,7 @@ export class EmpleadoListComponent implements OnInit {
 
   viewEmployee(item){
     console.log("Entra a ver a ver empleado");
+    console.log("item:"+item.payload.doc.id);
     this.router.navigate(['/details/'+ item.payload.doc.id]);
   }
 

@@ -25,9 +25,8 @@ export class EmpleadosComponent implements OnInit {
   paises= [];
   ngOnInit(): void {
     this.paisesSerice.getAllCountries().subscribe(data =>{
-      //console.log(data)
-      this.paises.push(data);
-      console.log(this.paises)
+      let result = data.map(a => a.name);
+      this.paises =result;
     })
   }
 

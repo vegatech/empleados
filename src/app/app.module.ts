@@ -19,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
+//resolver
+import { EditEmployeeResolver } from './edit-employee/edit-employee.resolver';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
     AngularFirestoreModule,
     HttpClientModule
   ],
-  providers: [EmpleadosService ],
+  providers: [EmpleadosService,EditEmployeeResolver ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

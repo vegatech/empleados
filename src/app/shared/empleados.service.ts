@@ -44,6 +44,10 @@ export class EmpleadosService {
     getEmployees() {
       return  this.firestore.collection("Empleados").snapshotChanges();
     }
+    getEmployee(employeeKey){
+      console.log("id empleado:"+employeeKey);
+      return this.firestore.collection('Empleados').doc(employeeKey).snapshotChanges();
+    }
 
     deleteEmployee(data) {
       return this.firestore
