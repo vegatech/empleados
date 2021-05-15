@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-empleado-list',
   templateUrl: './empleado-list.component.html',
@@ -27,23 +29,39 @@ export class EmpleadoListComponent implements OnInit {
       .getEmployees()
       .subscribe(res => (this.Empleados = res));
 
-  /*deleteEmployee = data => this.empleadosService.deleteCoffeeOrder(data);
 
-  markCompleted = data => this.empleadosService.updateCoffeeOrder(data);*/
 
 
   AddUser(){
     console.log("ingresa boton nuevo empleado");
     this.router.navigate(['/new-employee']);
   }
+ delete (data){
+      Swal.fire({
+        title: 'Esta seguro?',
+        text: "Los cambios son irreversibles!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Borrar Registro!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Borrado!',
+            'El registro ha sido eliminado.',
+            'success'
+          )
+          this.empleadosService.deleteEmployee(data);
+        }
+      })
+}
 
 
-  deleteEmployee(){
 
-  }
-
-  viewEmployee(){
-    //this.router.navigate(['/details/'+ item.payload.doc.id]);
+  viewEmployee(item){
+    console.log("Entra a ver a ver empleado");
+    this.router.navigate(['/details/'+ item.payload.doc.id]);
   }
 
   SearchByEmployeeName(){

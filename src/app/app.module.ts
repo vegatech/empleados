@@ -16,12 +16,16 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { HttpClientModule } from '@angular/common/http';
+import { ViewDetailsComponent } from './view-details/view-details.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmpleadosComponent,
-    EmpleadoListComponent
+    EmpleadoListComponent,
+    ViewDetailsComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

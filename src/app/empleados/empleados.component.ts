@@ -84,4 +84,5 @@ export class EmpleadosComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+
 }

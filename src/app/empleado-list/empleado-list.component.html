@@ -48,13 +48,13 @@ placeholder="Search by name..."
 
        <td>
          <span>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verUsuario" (click)="viewEmployee()">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verUsuario"  (click)="viewEmployee(empleado)">
             <i class="fa fa-edit"></i>
         </button>
-        <button type="button" class="btn btn-info  margin-btm" (click)="deleteEmployee()">
+        <button type="button" class="btn btn-info  margin-btm" (click)="viewEmployee(empleado)" >
           <i class="fa fa-eye"></i>
         </button>
-        <button type="button" class="btn btn-small btn-danger margin-btm" (click)="deleteEmployee()">
+        <button type="button" class="btn btn-small btn-danger margin-btm" (click)="delete(empleado)">
             <i class="fa fa-trash-o"></i>
         </button>
 
