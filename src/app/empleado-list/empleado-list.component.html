@@ -1,38 +1,75 @@
-<!--<input type="text" class="form-control" 
-[(ngModel)]="searchValue" 
-[ngModelOptions]="{standalone: true}" 
-placeholder="Search by name..." 
+<!--<input type="text" class="form-control"
+[(ngModel)]="searchValue"
+[ngModelOptions]="{standalone: true}"
+placeholder="Search by name..."
 (keyup)="searchByName()">-->
 
+<br>
+<br><br><br><br>
+<div class="row">
+  <div class="col-4">
+
+
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Busqueda</label>
+        <div class="input-group mb-2">
+
+          <input type="text" class="form-control"
+          id="buscador"
+          [(ngModel)]="searchValue"
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Buscar por nombre.."
+          (keyup)="SearchByEmployeeName()">
+          <div class="input-group-pospend">
+            <div class="input-group-text fa fa-search"><i class="fa fa-search" aria-hidden="true"></i></div>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
 <table class="table table-hover">
    <thead>
      <tr>
-       <th>Order No.</th>
-       <th>Nombre</th>
-       <th>Nombre Usuario</th>
+       <th>Nombre <br>(cargo)</th>
+       <th>Edad</th>
+       <th>Fecha de Contratacion</th>
+       <th>Acciones</th>
      </tr>
    </thead>
- 
+
    <tbody>
 
 <tbody>
     <tr *ngFor="let empleado of Empleados">
-       <td>{{ empleado.payload.doc.data().nombre }}</td>
-       <td>{{ empleado.payload.doc.data().nombreusuario }}</td>
-       <td><span>{{ empleado.payload.doc.data().fnacimiento }} </span></td>
-            
-          
-          
-      
+       <td>{{ empleado.payload.doc.data().nombre }} <br>{{ empleado.payload.doc.data().cargo }}</td>
+       <td>{{ empleado.payload.doc.data().edad }}</td>
+       <td><span>{{ empleado.payload.doc.data().fechacontratacion }} </span></td>
+
+
+       <td>
+         <span>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verUsuario" (click)="viewEmployee()">
+            <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="btn btn-info  margin-btm" (click)="deleteEmployee()">
+          <i class="fa fa-eye"></i>
+        </button>
+        <button type="button" class="btn btn-small btn-danger margin-btm" (click)="deleteEmployee()">
+            <i class="fa fa-trash-o"></i>
+        </button>
+
+      </span>
+    </td>
+
     </tr>
     </tbody>
    </table>
 
    <div class="col-md-6">
-       <button 
+       <button
         class="btn btn-success"
         (click)="AddUser()" >
           + Crear Nuevo Empleado
-      </button>  
-    </div> 
+      </button>
+    </div>
 

@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
 import { PaisesService } from  "../shared/paises.service";
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent implements OnInit {
+  employee = [];
+  public fechaedad:any;
+  public edad:number;
 
   constructor(public empleadosService: EmpleadosService,public paisesSerice: PaisesService) { }
   cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
@@ -20,7 +25,6 @@ export class EmpleadosComponent implements OnInit {
       console.log(this.paises)
     })
   }
-  employee = [];
 
   addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
     let index = this.employee.indexOf(employee);
@@ -29,13 +33,13 @@ export class EmpleadosComponent implements OnInit {
     onSubmit(){
       this.empleadosService.form.value.empleado = this.employee;
       let data = this.empleadosService.form.value;
-      
+
      this.empleadosService.createEmployeesSave(data)
          .then((res) => {
           console.log('This is init method');
              /*do something here....
              maybe clear the form or give a success message*/
-             if (res.status === 200) { 
+            // if (res.status === 200) {
               console.log('This is init method2');
               Swal.fire({
                 position: 'center',
@@ -45,7 +49,8 @@ export class EmpleadosComponent implements OnInit {
                 timer: 1500
               });
             }
-         });
+         //}
+         );
 
     }
     /*get_paises(){
@@ -53,10 +58,23 @@ export class EmpleadosComponent implements OnInit {
         console.log(JSON.stringify(res));
       })
     }*/
-   
+
     changeCargo(e) {
       /*this.cargo.setValue(e.target.value, {
         onlySelf: true
       })*/
     }
+
+    SearchByEmployeeName(){
+
+    }
+
+
+   public CalculateAge2(): number {
+     this.fechaedad
+     console.log("this.fechaedad:"+this.fechaedad);
+     console.log(moment().diff(this.fechaedad, 'years'));
+     this.edad =moment().diff(this.fechaedad, 'years');
+    return moment().diff(this.fechaedad, 'years');
+  }
 }

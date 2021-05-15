@@ -2,62 +2,70 @@
     <div class="col align-self-center">
     <div class="col-5">
     <label for="exampleFormControlInput1" class="form-label">Nombre Empleado</label>
-    <input placeholder="Nombre Empleado" 
-           formControlName="nombre" 
-           type="text" 
+    <input placeholder="Nombre Empleado"
+           formControlName="nombre"
+           type="text"
            class="form-control">
 
-    <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>   
-    <input placeholder="Fecha de Nacimiento" 
-           formControlName="fechanacimiento" 
-           type="text" 
-           class="form-control">
+    <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
+    <input placeholder="Fecha de Nacimiento"
+           formControlName="fechanacimiento"
+           type="date"
+           [(ngModel)]="fechaedad"
+           class="form-control"
+           (change)="this.CalculateAge2()">
+    <label hidden for="exampleFormControlInput1" class="form-label">Edad</label>
+    <input hidden placeholder=""
+          formControlName="edad"
+          type="number"
+          [(ngModel)]="edad"
+          class="form-control">
 
     <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
-    <input placeholder="Nombre de usuario" 
-           formControlName="nombreusuario" 
-           type="text" 
+    <input placeholder="Nombre de usuario"
+           formControlName="nombreusuario"
+           type="text"
            class="form-control">
     <label for="exampleFormControlInput1" class="form-label">Fecha Contratacion</label>
-    <input placeholder="" 
-           formControlName="fechacontratacion" 
-           type="text" 
+    <input placeholder=""
+           formControlName="fechacontratacion"
+           type="date"
            class="form-control">
-    <label for="exampleFormControlInput1" class="form-label">Pais</label>       
-    <input placeholder="Pais" 
-           formControlName="pais" 
-           type="text" 
+    <label for="exampleFormControlInput1" class="form-label">Pais</label>
+    <input placeholder="Pais"
+           formControlName="pais"
+           type="text"
            class="form-control">
     <label for="exampleFormControlInput1" class="form-label">Estado</label>
-    <input placeholder="Estado" 
-           formControlName="estado" 
-           type="text" 
+    <input placeholder="Estado"
+           formControlName="estado"
+           type="text"
            class="form-control">
-    <label for="exampleFormControlInput1" class="form-label">Area</label>        
-    <input placeholder="Area" 
-           formControlName="area" 
-           type="text" 
+    <label for="exampleFormControlInput1" class="form-label">Area</label>
+    <input placeholder="Area"
+           formControlName="area"
+           type="text"
            class="form-control">
-    <label for="exampleFormControlInput1" class="form-label">Cargo</label>      
+    <label for="exampleFormControlInput1" class="form-label">Cargo</label>
     <select class="custom-select" (change)="changeCargo($event)" formControlName="cargo">
        <option value="" disabled>Selecciona el cargo</option>
        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{cargo}}</option>
-    </select>     
+    </select>
     <select class="custom-select" (change)="changeCargo($event)" formControlName="pais">
        <option value="" disabled>Selecciona un Pais</option>
        <option *ngFor="let paises of paises" [ngValue]="paises">{{paises}}</option>
-    </select> 
+    </select>
     <label for="exampleFormControlInput1" class="form-label">% Comision</label>
-    <input placeholder="Comision" 
-           formControlName="comision" 
-           type="text" 
+    <input placeholder="Comision"
+           formControlName="comision"
+           type="text"
            class="form-control">
-      
-           
 
 
-   
-    <button 
+
+
+
+    <button
       class="btn btn-success"
        (click)="onSubmit()">
         Enviar

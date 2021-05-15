@@ -18,7 +18,8 @@ export class EmpleadoListComponent implements OnInit {
   }
 
 
-
+  searchValue:string="";
+  name_filtered_items: Array<any>;
   Empleados;
 
   getEmployees = () =>
@@ -35,7 +36,24 @@ export class EmpleadoListComponent implements OnInit {
     console.log("ingresa boton nuevo empleado");
     this.router.navigate(['/new-employee']);
   }
+
+
+  deleteEmployee(){
+
+  }
+
+  viewEmployee(){
+    //this.router.navigate(['/details/'+ item.payload.doc.id]);
+  }
+
   SearchByEmployeeName(){
-    
+    //let value = this.searchValue.toLowerCase();
+    let value = this.searchValue;
+    this.empleadosService.searcEmployees(value)
+    .subscribe(result => {
+      this.Empleados = result;
+      //this.items = this.combineLists(result, this.age_filtered_items);
+    })
+
   }
 }
