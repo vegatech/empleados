@@ -13,6 +13,7 @@ export class EmpleadosService {
 
   form = new FormGroup({
     nombre: new FormControl(''),
+    nombre_busqueda: new FormControl(''),
     fechanacimiento: new FormControl(''),
     edad: new FormControl(''),
     nombreusuario: new FormControl(''),
@@ -59,11 +60,24 @@ export class EmpleadosService {
 
     }
     searcEmployees(searchValue){
-      return this.firestore.collection('Empleados',ref => ref.where('nombre', '>=', searchValue)
-        .where('nombre', '<=', searchValue + '\uf8ff'))
+      return this.firestore.collection('Empleados',ref => ref.where('nombre_busqueda', '>=', searchValue)
+        .where('nombre_busqueda', '<=', searchValue + '\uf8ff'))
         .snapshotChanges()
     }
-
+    createEmployee(value){
+      return this.firestore.collection('Empleados').add({
+        nombre: value.nombre,
+        nombre_busqueda: value.nombre.toLowerCase(),
+        nombreusuario: value.usuario,
+        fechacontratacion: value.fechacontratacion,
+        fechanacimiento: value.fechanacimiento,
+        edad: parseInt(value.edad),
+        estado: value.estado,
+        area: value.area,
+        cargo: value.cargo,
+        pais: value.pais
+      });
+    }
 
 
 

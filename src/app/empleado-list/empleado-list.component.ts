@@ -47,12 +47,12 @@ export class EmpleadoListComponent implements OnInit {
   }
 
   SearchByEmployeeName(){
-    //let value = this.searchValue.toLowerCase();
-    let value = this.searchValue;
+    let value = this.searchValue.toLowerCase();
+    //let value = this.searchValue;
     this.empleadosService.searcEmployees(value)
     .subscribe(result => {
       this.Empleados = result;
-      //this.items = this.combineLists(result, this.age_filtered_items);
+
     })
 
   }

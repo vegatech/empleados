@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
 import { PaisesService } from  "../shared/paises.service";
+import { ActivatedRoute, Router } from '@angular/router';
+
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
 
@@ -14,7 +16,10 @@ export class EmpleadosComponent implements OnInit {
   public fechaedad:any;
   public edad:number;
 
-  constructor(public empleadosService: EmpleadosService,public paisesSerice: PaisesService) { }
+  constructor(public empleadosService: EmpleadosService,
+    public paisesSerice: PaisesService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
   cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
   areas: any = ['Administrativa', 'Tecnologia'];
   paises= [];
@@ -34,23 +39,13 @@ export class EmpleadosComponent implements OnInit {
       this.empleadosService.form.value.empleado = this.employee;
       let data = this.empleadosService.form.value;
 
-     this.empleadosService.createEmployeesSave(data)
-         .then((res) => {
-          console.log('This is init method');
-             /*do something here....
-             maybe clear the form or give a success message*/
-            // if (res.status === 200) {
-              console.log('This is init method2');
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'El producto fue agregado',
-                showConfirmButton: false,
-                timer: 1500
-              });
-            }
-         //}
-         );
+     this.empleadosService.createEmployee(data)
+     .then(
+      res => {
+        this.alerta();
+      }
+     )
+
 
     }
     /*get_paises(){
@@ -77,4 +72,16 @@ export class EmpleadosComponent implements OnInit {
      this.edad =moment().diff(this.fechaedad, 'years');
     return moment().diff(this.fechaedad, 'years');
   }
+  alerta(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'El producto fue agregado',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    );
+    this.router.navigate(['/home']);
+  }
+
 }
