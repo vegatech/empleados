@@ -17,7 +17,10 @@ export class EmpleadosComponent implements OnInit {
   public fechaedad:any;
   public edad:number;
   isChecked = true;
-  isStatus: string;
+  isStatus: string= "Activo";
+  public selectedVal: string;
+
+
 
   constructor(public empleadosService: EmpleadosService,
     public paisesSerice: PaisesService,
@@ -32,6 +35,7 @@ export class EmpleadosComponent implements OnInit {
       let result = data.map(a => a.name);
       this.paises =result;
     })
+    this.selectedVal ='';
   }
 
   addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
@@ -62,12 +66,21 @@ export class EmpleadosComponent implements OnInit {
     onChange(value: MatSlideToggleChange) {
 
       if (this.isChecked === false){
+
       this.isChecked = false;
+      this.isStatus= "Inactivo";
+      console.log("Estado"+this.isStatus);
       }else{
       this.isChecked = true;
+
+      this.isStatus= "Activo";
+      console.log("Estado"+this.isStatus);
       }
     }
-
+    public onChangeArea(val: string) {
+      this.selectedVal = val;
+      console.log("Valor Area:"+ this.selectedVal);
+    }
 
    public CalculateAge2(): number {
      this.fechaedad

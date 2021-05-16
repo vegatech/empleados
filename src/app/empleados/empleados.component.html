@@ -1,14 +1,36 @@
-<form [formGroup]="this.empleadosService.form" >
-    <div class="col align-self-center">
-    <div class="col-5">
-      <div class="form-group">
+
+<br><br><br>
+<div class="row" data-aos="zoom-in">
+  <div class="col-md-12">
+    <div class="card">
+
+      <div class="card-body">
+        <h5> <span >Nuevo Empleado</span>
+
+        </h5>
+    </div>
+
+    <div class="card-body reset-table p-t-0">
+      <form [formGroup]="this.empleadosService.form" >
+
+
+      <div class="form-group row">
+
+      <div class="col-sm-6">
     <label for="exampleFormControlInput1" class="form-label">Nombre Empleado</label>
     <input placeholder="Nombre Empleado"
            formControlName="nombre"
            type="text"
            class="form-control">
      </div>
-     <div class="form-group">
+     <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label" style="margin-right: 30px;">Area</label>
+      <mat-button-toggle-group #group="matButtonToggleGroup"  name="fontStyle" aria-label="Font Style" (change)="onChangeArea(group.value)" formControlName="area" [(ngModel)]="selectedVal">
+        <mat-button-toggle class="icon-inner" value="Administratíva">Administratíva</mat-button-toggle>
+        <mat-button-toggle class="icon-inner" value="Tecnología">Tecnología</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+     <div class="col-sm-6">
     <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento</label>
     <input placeholder="Fecha de Nacimiento"
            formControlName="fechanacimiento"
@@ -17,82 +39,85 @@
            class="form-control"
            (change)="this.CalculateAge2()">
      </div>
-     <div class="form-group">
-    <label hidden for="exampleFormControlInput1" class="form-label">Edad</label>
-    <input hidden placeholder=""
-          formControlName="edad"
-          type="number"
-          [(ngModel)]="edad"
-          class="form-control">
-      </div>
-      <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
-    <input placeholder="Nombre de usuario"
-           formControlName="nombreusuario"
-           type="text"
-           class="form-control">
+     <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">Cargo</label>
+      <select class="custom-select" (change)="changeCargo($event)" formControlName="cargo">
+        <option value="" disabled>Selecciona el cargo</option>
+        <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{cargo}}</option>
+      </select>
     </div>
-    <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">Fecha Contratacion</label>
-    <input placeholder=""
-           formControlName="fechacontratacion"
-           type="date"
-           class="form-control">
+    <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">Pais</label>
+      <select class="custom-select" (change)="changeCargo($event)" formControlName="pais">
+        <option value="" disabled>Selecciona un Pais</option>
+        <option *ngFor="let pais of paises" [ngValue]="pais">{{pais}}</option>
+      </select>
     </div>
-    <div class="form-group">
-
-    <label for="exampleFormControlInput1" class="form-label">Estado</label>
-    <mat-slide-toggle
-    (change)="onChange($event)"
-    formControlName="estado"
-    [(ngModel)]="isChecked"
-    >Activo</mat-slide-toggle>
-    <section>
-      {{ isChecked }}
-    </section>
-
+    <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">% Comision</label>
+      <input placeholder="Comision"
+            formControlName="comision"
+            type="number"
+            class="form-control">
     </div>
-    <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">Area</label>
-    <input placeholder="Area"
-           formControlName="area"
-           type="text"
-           class="form-control">
+    <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
+      <input placeholder="Nombre de usuario"
+            formControlName="nombreusuario"
+            type="text"
+            class="form-control">
     </div>
-    <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">Cargo</label>
-    <select class="custom-select" (change)="changeCargo($event)" formControlName="cargo">
-       <option value="" disabled>Selecciona el cargo</option>
-       <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{cargo}}</option>
-    </select>
-    </div>
-    <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">Pais</label>
-    <select class="custom-select" (change)="changeCargo($event)" formControlName="pais">
-       <option value="" disabled>Selecciona un Pais</option>
-       <option *ngFor="let pais of paises" [ngValue]="pais">{{pais}}</option>
-    </select>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlInput1" class="form-label">% Comision</label>
-    <input placeholder="Comision"
-           formControlName="comision"
-           type="number"
-           class="form-control">
-   </div>
 
-   <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle class="icon-inner" value="bold">Administratíva</mat-button-toggle>
-    <mat-button-toggle class="icon-inner" value="italic">Tecnología</mat-button-toggle>
 
-  </mat-button-toggle-group>
+  <div class="form-group row">
 
-   <div class="form-group">
-    <button
-      class="btn btn-success"
-       (click)="onSubmit()" [disabled]="!this.empleadosService.form.valid">
-        Enviar
-    </button>
+    <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">Fecha Contratacion</label>
+      <input placeholder=""
+            formControlName="fechacontratacion"
+            type="date"
+            class="form-control">
     </div>
-</div></div>
-        </form>
+
+
+    <div class="col-sm-6">
+      <label hidden for="exampleFormControlInput1" class="form-label">Edad</label>
+      <input hidden placeholder=""
+            formControlName="edad"
+            type="number"
+            [(ngModel)]="edad"
+            class="form-control">
+    </div>
+
+    <div class="col-sm-6">
+      <label for="exampleFormControlInput1" class="form-label">Estado :</label>
+      <mat-slide-toggle
+      (change)="onChange($event)"
+      formControlName="estado"
+      [(ngModel)]="isChecked"
+      >{{ isStatus }}</mat-slide-toggle>
+      <!--<section>
+        {{ isChecked }}
+      </section>-->
+    </div>
+    <br>
+    <br>
+    <br>
+  </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button
+            class="btn btn-success"
+            (click)="onSubmit()" [disabled]="!this.empleadosService.form.valid">
+              Enviar
+          </button>
+        </div>
+      </div>
+
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
