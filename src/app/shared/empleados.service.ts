@@ -35,8 +35,11 @@ export class EmpleadosService {
       });
     }
 
-
-    updateEmployee(data) {
+    updateEmployee(employeeKey, value){
+      value.nombre_busqueda = value.nombre.toLowerCase();
+      return this.firestore.collection('Empleados').doc(employeeKey).set(value);
+    }
+    updateEmployees(data) {
       return this.firestore
         .collection("Empleados")
         .doc(data.payload.doc.id)

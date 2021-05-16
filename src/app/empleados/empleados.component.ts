@@ -70,7 +70,7 @@ export class EmpleadosComponent implements OnInit {
     Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'El producto fue agregado',
+      title: 'El registro fue Agregado Exitosamente',
       showConfirmButton: false,
       timer: 1500
     }

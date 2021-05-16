@@ -5,6 +5,7 @@ import { EmpleadosService } from "../shared/empleados.service";
 import { Router } from '@angular/router';
 import { PaisesService } from  "../shared/paises.service";
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
@@ -72,8 +73,14 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   onSubmit(value){
-
+    this.empleadosService.updateEmployee(this.item.id, value)
+    .then(
+      res => {
+        this.alerta();
+      }
+    )
   }
+
 
 
   public CalculateAge2(): number {
@@ -98,5 +105,18 @@ export class EditEmployeeComponent implements OnInit {
     /*this.cargo.setValue(e.target.value, {
       onlySelf: true
     })*/
+  }
+
+
+  alerta(){
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'El registro fue editado exitosamente',
+      showConfirmButton: false,
+      timer: 1500
+    }
+    );
+    this.router.navigate(['/home']);
   }
 }
