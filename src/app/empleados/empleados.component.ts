@@ -100,6 +100,9 @@ export class EmpleadosComponent implements OnInit {
     );
     this.router.navigate(['/home']);
   }
+  cancel(){
+    this.router.navigate(['/home']);
+  }
 
 
 }
