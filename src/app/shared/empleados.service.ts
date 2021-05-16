@@ -35,6 +35,7 @@ export class EmpleadosService {
       });
     }
 
+
     updateEmployee(data) {
       return this.firestore
         .collection("Empleados")
@@ -72,14 +73,15 @@ export class EmpleadosService {
       return this.firestore.collection('Empleados').add({
         nombre: value.nombre,
         nombre_busqueda: value.nombre.toLowerCase(),
-        nombreusuario: value.usuario,
+        nombreusuario: value.nombreusuario,
         fechacontratacion: value.fechacontratacion,
         fechanacimiento: value.fechanacimiento,
         edad: parseInt(value.edad),
         estado: value.estado,
         area: value.area,
         cargo: value.cargo,
-        pais: value.pais
+        pais: value.pais,
+        comision: value.comision
       });
     }
 

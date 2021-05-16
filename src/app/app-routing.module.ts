@@ -11,8 +11,9 @@ export const routes: Routes = [
   { path: '', component: EmpleadoListComponent  },
   { path: 'home', component: EmpleadoListComponent  },
   { path: 'new-employee', component: EmpleadosComponent  },
-  { path: 'edit', component: ViewDetailsComponent },
-  { path: 'details/:id', component: EditEmployeeComponent , resolve:{data : EditEmployeeResolver} }
+//  { path: 'edit', component: ViewDetailsComponent },
+  { path: 'details/:id', component: EditEmployeeComponent , resolve:{data : EditEmployeeResolver} },
+  { path: 'edit/:id', component: EditEmployeeComponent , resolve:{data : EditEmployeeResolver} }
 ];
 
 @NgModule({

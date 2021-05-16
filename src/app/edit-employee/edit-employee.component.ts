@@ -93,4 +93,10 @@ export class EditEmployeeComponent implements OnInit {
       onlySelf: true
     })*/
   }
+
+  changePais(e) {
+    /*this.cargo.setValue(e.target.value, {
+      onlySelf: true
+    })*/
+  }
 }

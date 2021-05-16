@@ -20,9 +20,10 @@ export class EmpleadosComponent implements OnInit {
     public paisesSerice: PaisesService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
-  cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
-  areas: any = ['Administrativa', 'Tecnologia'];
-  paises= [];
+    cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
+    areas: any = ['Administrativa', 'Tecnologia'];
+    paises= [];
+
   ngOnInit(): void {
     this.paisesSerice.getAllCountries().subscribe(data =>{
       let result = data.map(a => a.name);
@@ -47,11 +48,7 @@ export class EmpleadosComponent implements OnInit {
 
 
     }
-    /*get_paises(){
-      this.paisesSerice.getPaises().subscribe(res =>{
-        console.log(JSON.stringify(res));
-      })
-    }*/
+
 
     changeCargo(e) {
       /*this.cargo.setValue(e.target.value, {
@@ -59,9 +56,7 @@ export class EmpleadosComponent implements OnInit {
       })*/
     }
 
-    SearchByEmployeeName(){
 
-    }
 
 
    public CalculateAge2(): number {
