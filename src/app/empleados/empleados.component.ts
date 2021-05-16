@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from "../shared/empleados.service";
 import { PaisesService } from  "../shared/paises.service";
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 import Swal from 'sweetalert2';
 import * as moment from 'moment';
@@ -15,6 +16,8 @@ export class EmpleadosComponent implements OnInit {
   employee = [];
   public fechaedad:any;
   public edad:number;
+  isChecked = true;
+  isStatus: string;
 
   constructor(public empleadosService: EmpleadosService,
     public paisesSerice: PaisesService,
@@ -56,7 +59,14 @@ export class EmpleadosComponent implements OnInit {
       })*/
     }
 
+    onChange(value: MatSlideToggleChange) {
 
+      if (this.isChecked === false){
+      this.isChecked = false;
+      }else{
+      this.isChecked = true;
+      }
+    }
 
 
    public CalculateAge2(): number {

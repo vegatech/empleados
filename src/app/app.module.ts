@@ -22,6 +22,14 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 //resolver
 import { EditEmployeeResolver } from './edit-employee/edit-employee.resolver';
 
+//Meterial
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule  } from  '@angular/material/slider';
+import { MatDialogModule  } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +45,9 @@ import { EditEmployeeResolver } from './edit-employee/edit-employee.resolver';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatInputModule, MatSliderModule, MatDialogModule, MatButtonToggleModule ,MatSlideToggleModule
   ],
   providers: [EmpleadosService,EditEmployeeResolver ],
   bootstrap: [AppComponent]
