@@ -23,6 +23,7 @@ export class EmpleadosService {
     area: new FormControl(''),
     cargo: new FormControl(''),
     comision: new FormControl('')
+
 })
     createEmployeesSave(data) {
       console.log("Guarda Registro");

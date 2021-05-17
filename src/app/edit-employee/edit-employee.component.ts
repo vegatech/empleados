@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { EmpleadosService } from "../shared/empleados.service";
 import { Router } from '@angular/router';
 import { PaisesService } from  "../shared/paises.service";
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 @Component({
@@ -17,8 +18,11 @@ export class EditEmployeeComponent implements OnInit {
   public fechaedad:any;
   public edad:number;
   paises= [];
-  cargos = ["Diseñador", "Pogramador", "Fundador CEO", "Recursos Humanos"];
-
+  public selectedVal: string;
+  isChecked = true;
+  isStatus: string= "Activo";
+  cargos = ["Administrador", "Contador", "Fundador CEO", "Recursos Humanos"];
+  cargosT = ["Diseñador", "Pogramador", "Soporte Tecnico", "Q & A"];
   validation_messages = {
     'nombre': [
       { type: 'required', message: 'Nombre es requerido.' }
@@ -28,6 +32,7 @@ export class EditEmployeeComponent implements OnInit {
     ],
     'edad': [
       { type: 'required', message: 'Edad Es requerida.' },
+      { type: 'min', message: 'Edad minima es 18 .' }
     ]
   };
   constructor(
@@ -43,6 +48,8 @@ export class EditEmployeeComponent implements OnInit {
     this.paisesSerice.getAllCountries().subscribe(data =>{
       let result = data.map(a => a.name);
       this.paises =result;
+      this.onChangeArea("Administratíva");
+      this.onChanges();
     })
     console.log("ingresa ngOnInit");
     this.route.data.subscribe(routeData => {
@@ -62,15 +69,28 @@ export class EditEmployeeComponent implements OnInit {
       nombre: [this.item.nombre, Validators.required],
       nombreusuario: [this.item.nombreusuario, Validators.required],
       fechanacimiento: [this.item.fechanacimiento, Validators.required],
-      cargo: [this.item.cargo, Validators.required],
+      cargo: [this.item.cargo,{disabled: true}, Validators.required],
       area: [this.item.area, Validators.required],
-      edad: [this.item.edad, Validators.required],
+      edad: [this.item.edad, Validators.min(18)],
       pais: [this.item.pais, Validators.required],
       estado: [this.item.estado, Validators.required],
       comision: [this.item.comision, Validators.required],
       fechacontratacion: [this.item.fechacontratacion, Validators.required]
     });
+    this.exampleForm.get('comision').disable();
   }
+  onChanges() {
+    this.exampleForm.get('cargo').valueChanges
+    .subscribe(selectedCargo => {
+        if (selectedCargo != 'Fundador CEO') {
+            this.exampleForm.get('comision').reset();
+            this.exampleForm.get('comision').disable();
+        }
+        else {
+            this.exampleForm.get('comision').enable();
+        }
+    });
+}
 
   onSubmit(value){
     this.empleadosService.updateEmployee(this.item.id, value)
@@ -82,13 +102,45 @@ export class EditEmployeeComponent implements OnInit {
   }
 
 
-
+  onChange(value: MatSlideToggleChange) {
+      if (this.isChecked === false){
+        this.isChecked = false;
+        this.isStatus= "Inactivo";
+        console.log("Estado"+this.isStatus);
+      }else{
+        this.isChecked = true;
+        this.isStatus= "Activo";
+        console.log("Estado"+this.isStatus);
+      }
+  }
+  public onChangeArea(val: string) {
+    this.selectedVal = val;
+    if (this.selectedVal == "Administratíva"){
+      this.cargos.length=0;
+      this.cargos = ["Administrador", "Contador", "Fundador CEO", "Recursos Humanos"];
+    }else{
+      this.cargos.length=0;
+      this.cargos =["Diseñador", "Pogramador", "Soporte Tecnico", "Q & A"];
+    }
+    console.log("Valor Area:"+ this.selectedVal);
+  }
   public CalculateAge2(): number {
-    this.fechaedad
-    console.log("this.fechaedad:"+this.fechaedad);
-    console.log(moment().diff(this.fechaedad, 'years'));
     this.edad =moment().diff(this.fechaedad, 'years');
-   return moment().diff(this.fechaedad, 'years');
+    if (this.edad < 18){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Edad minima debe ser 18 !!',
+        showConfirmButton: false,
+        timer: 1500
+      }
+      );
+      this.fechaedad =null;
+      this.edad=null;
+      return null;
+    }else{
+    return moment().diff(this.fechaedad, 'years');
+    }
  }
   cancel(){
     this.router.navigate(['/home']);

@@ -5,9 +5,9 @@
     <div class="card">
 
       <div class="card-body">
-        <h5> <span >Nuevo Empleado</span>
+        <h2> <span >Nuevo Empleado</span>
 
-        </h5>
+        </h2>
     </div>
 
     <div class="card-body reset-table p-t-0">
@@ -35,6 +35,7 @@
     <input placeholder="Fecha de Nacimiento"
            formControlName="fechanacimiento"
            type="date"
+           value={{fechaedad}}
            [(ngModel)]="fechaedad"
            class="form-control"
            (change)="this.CalculateAge2()">
@@ -86,6 +87,7 @@
       <input hidden placeholder=""
             formControlName="edad"
             type="number"
+            value={{edad}}
             [(ngModel)]="edad"
             class="form-control">
     </div>

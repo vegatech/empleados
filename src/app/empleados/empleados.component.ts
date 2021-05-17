@@ -34,8 +34,10 @@ export class EmpleadosComponent implements OnInit {
     this.paisesSerice.getAllCountries().subscribe(data =>{
       let result = data.map(a => a.name);
       this.paises =result;
+
     })
     this.selectedVal ='';
+    this.empleadosService.form.get('comision').disable();
   }
 
   addCargo = empleado => this.employee.push(empleado);removeEmployee = employee => {
@@ -80,14 +82,33 @@ export class EmpleadosComponent implements OnInit {
     public onChangeArea(val: string) {
       this.selectedVal = val;
       console.log("Valor Area:"+ this.selectedVal);
+      if (this.selectedVal == "Administratíva"){
+        this.cargos.length=0;
+        this.cargos = ["Administrador", "Contador", "Fundador CEO", "Recursos Humanos"];
+      }else{
+        this.cargos.length=0;
+        this.cargos =["Diseñador", "Pogramador", "Soporte Tecnico", "Q & A"];
+      }
     }
 
    public CalculateAge2(): number {
-     this.fechaedad
-     console.log("this.fechaedad:"+this.fechaedad);
-     console.log(moment().diff(this.fechaedad, 'years'));
-     this.edad =moment().diff(this.fechaedad, 'years');
+
+    this.edad =moment().diff(this.fechaedad, 'years');
+    if (this.edad < 18){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Edad minima debe ser 18 !!',
+        showConfirmButton: false,
+        timer: 1500
+      }
+      );
+      this.fechaedad =null;
+      this.edad=null;
+      return null;
+    }else{
     return moment().diff(this.fechaedad, 'years');
+    }
   }
   alerta(){
     Swal.fire({
