@@ -28,13 +28,15 @@ export class EditEmployeeComponent implements OnInit {
       { type: 'required', message: 'Nombre es requerido.' }
     ],
     'nombreusuario': [
-      { type: 'required', message: 'Nombre usuario es requerido.' }
+      { type: 'required', message: 'Nombre usuario es requerido.' },
+      { type: 'specialchars', message: 'No se aceptan caracteres especiales.' }
     ],
     'edad': [
       { type: 'required', message: 'Edad Es requerida.' },
       { type: 'min', message: 'Edad minima es 18 .' }
     ]
   };
+
   constructor(
 
     private route: ActivatedRoute,
@@ -62,12 +64,17 @@ export class EditEmployeeComponent implements OnInit {
       }
     })
   }
-
+  specialchars(control: FormControl): { [key: string]: boolean } {
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    if (control.value && nameRegexp.test(control.value)) {
+       return { invalidname: true };
+    }
+}
   createForm() {
     console.log("Create formº");
     this.exampleForm = this.fb.group({
       nombre: [this.item.nombre, Validators.required],
-      nombreusuario: [this.item.nombreusuario, Validators.required],
+      nombreusuario: [this.item.nombreusuario, Validators.required ],
       fechanacimiento: [this.item.fechanacimiento, Validators.required],
       cargo: [this.item.cargo,{disabled: true}, Validators.required],
       area: [this.item.area, Validators.required],
@@ -154,7 +161,7 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   changePais(e) {
-    /*this.cargo.setValue(e.target.value, {
+    /*this.pais.setValue(e.target.value, {
       onlySelf: true
     })*/
   }
@@ -171,4 +178,7 @@ export class EditEmployeeComponent implements OnInit {
     );
     this.router.navigate(['/home']);
   }
+
+
 }
+

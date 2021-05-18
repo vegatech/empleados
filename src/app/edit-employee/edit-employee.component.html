@@ -38,7 +38,7 @@
                       formControlName="fechanacimiento"
                       type="date"
                       value={{fechaedad}}
-                      [(ngModel)]="fechaedad"
+
                       class="form-control"
                       (change)="this.CalculateAge2()">
               </div>
@@ -66,10 +66,10 @@
             </div>
             <div class="col-sm-6">
               <label for="exampleFormControlInput1" class="form-label">Nombre usuario</label>
-                <input  type="text" placeholder="Usuario" class="form-control" formControlName="nombreusuario">
+                <input  type="text" placeholder="Usuario" class="form-control" formControlName="nombreusuario"  ngPattern="/^\d+$/">
 
               <ng-container *ngFor="let validation of validation_messages.nombreusuario">
-                <div class="alert-danger" *ngIf="exampleForm.get('nombreusuario').hasError(validation.type) && (exampleForm.get('nombreusuario').dirty || exampleForm.get('nombreusuario').touched)">{{validation.message}}</div>
+                <div class="alert-danger" *ngIf="exampleForm.get('nombreusuario').hasError(validation.type) && (exampleForm.get('nombreusuario').dirty || exampleForm.get('nombreusuario').touched) ">{{validation.message}}</div>
               </ng-container>
            </div>
           </div>
